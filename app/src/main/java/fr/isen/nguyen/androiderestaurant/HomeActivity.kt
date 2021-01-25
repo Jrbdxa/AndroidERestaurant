@@ -35,9 +35,4 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.i(null,"Home destroyed")
-    }
-
 }
