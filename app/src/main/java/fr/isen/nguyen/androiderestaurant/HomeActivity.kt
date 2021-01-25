@@ -3,6 +3,7 @@ package fr.isen.nguyen.androiderestaurant
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
+import android.util.Log
 import fr.isen.nguyen.androiderestaurant.databinding.ActivityHomeBinding
 
 private lateinit var binding: ActivityHomeBinding
@@ -16,13 +17,27 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.entrees.setOnClickListener{
-            val intent = Intent(this, ListeEntreesActivity::class.java)
+            val intent = Intent(this, DisplayMenuActivity::class.java)
             intent.putExtra("category", "entrees")
+            startActivity(intent)
+        }
+
+        binding.plats.setOnClickListener{
+            val intent = Intent(this, DisplayMenuActivity::class.java)
+            intent.putExtra("category", "plats")
+            startActivity(intent)
+        }
+
+        binding.desserts.setOnClickListener{
+            val intent = Intent(this, DisplayMenuActivity::class.java)
+            intent.putExtra("category", "desserts")
             startActivity(intent)
         }
     }
 
-
-
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.i(null,"Home destroyed")
+    }
 
 }
