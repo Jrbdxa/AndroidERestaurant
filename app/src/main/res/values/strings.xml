@@ -4,4 +4,8 @@
     <string name="plats">Plats</string>
     <string name="desserts">Desserts</string>
     <string name="home_title">Placeholder</string>
+    <string name="pasta">Spaghetti</string>
+    <string name="meat">Côte de porc</string>
+    <string name="soup">Velouté de légumes</string>
+    <string name="heresy">Pizza ananas-anchois</string>
 </resources>

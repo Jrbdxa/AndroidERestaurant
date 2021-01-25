@@ -9,6 +9,7 @@ import fr.isen.nguyen.androiderestaurant.databinding.ActivityDisplayMenuBinding
 
 private lateinit var binding: ActivityDisplayMenuBinding
 private lateinit var linearLayoutManager: LinearLayoutManager
+private lateinit var adapter: CategoryListAdapter
 
 class DisplayMenuActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,7 +22,8 @@ class DisplayMenuActivity : AppCompatActivity() {
 
         linearLayoutManager = LinearLayoutManager(this)
         binding.dishList.layoutManager = linearLayoutManager
-
-
+        adapter = CategoryListAdapter(listOf(getString(R.string.pasta), getString(R.string.soup), getString(R.string.meat), getString(R.string.heresy)))
+        binding.dishList.adapter = adapter
     }
+
 }
