@@ -17,6 +17,7 @@ class HomeActivity : AppCompatActivity() {
 
         binding.entrees.setOnClickListener{
             val intent = Intent(this, ListeEntreesActivity::class.java)
+            intent.putExtra("category", "entrees")
             startActivity(intent)
         }
     }
