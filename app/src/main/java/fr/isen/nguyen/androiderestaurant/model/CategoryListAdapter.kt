@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import fr.isen.nguyen.androiderestaurant.R
 import fr.isen.nguyen.androiderestaurant.databinding.CategoryCellBinding
 
 class CategoryListAdapter(val categories: List<Dish>, private val categoriesClickListener: (Dish) -> (Unit)): RecyclerView.Adapter<CategoryListAdapter.CategoryHolder>() {
@@ -27,6 +28,8 @@ class CategoryListAdapter(val categories: List<Dish>, private val categoriesClic
         if (thumbnailUrl != null) {
             Picasso.get()
                 .load(thumbnailUrl)
+                .placeholder(R.drawable.search)
+                .error(R.drawable.error)
                 .into(holder.image)
         }
 
