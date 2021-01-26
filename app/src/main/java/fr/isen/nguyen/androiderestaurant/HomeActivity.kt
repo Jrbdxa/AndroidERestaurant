@@ -18,19 +18,19 @@ class HomeActivity : AppCompatActivity() {
 
         binding.entrees.setOnClickListener{
             val intent = Intent(this, DisplayMenuActivity::class.java)
-            intent.putExtra("category", "entrees")
+            intent.putExtra("category", "Entrées")
             startActivity(intent)
         }
 
         binding.plats.setOnClickListener{
             val intent = Intent(this, DisplayMenuActivity::class.java)
-            intent.putExtra("category", "plats")
+            intent.putExtra("category", "Plats")
             startActivity(intent)
         }
 
         binding.desserts.setOnClickListener{
             val intent = Intent(this, DisplayMenuActivity::class.java)
-            intent.putExtra("category", "desserts")
+            intent.putExtra("category", "Desserts")
             startActivity(intent)
         }
     }

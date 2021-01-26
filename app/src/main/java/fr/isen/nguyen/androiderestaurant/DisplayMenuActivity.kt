@@ -1,15 +1,18 @@
 package fr.isen.nguyen.androiderestaurant
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import fr.isen.nguyen.androiderestaurant.databinding.ActivityDisplayMenuBinding
+import fr.isen.nguyen.androiderestaurant.model.CategoryListAdapter
+import fr.isen.nguyen.androiderestaurant.model.DataResult
+import fr.isen.nguyen.androiderestaurant.model.Dish
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -20,21 +23,27 @@ private lateinit var adapter: CategoryListAdapter
 class DisplayMenuActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_display_menu)
 
-        val binding = ActivityDisplayMenuBinding.inflate(layoutInflater)
+        binding = ActivityDisplayMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.category.text = intent.getStringExtra("category").toString()
+        val categoryTitle = intent.getStringExtra("category").toString()
+        binding.category.text = categoryTitle
 
-        //Make that a function DisplayCategories
-        displayCategories(binding)
-
-        loadDataFromCategory(intent.getStringExtra("category").toString())
+        loadDataFromCategory(categoryTitle?:"")
     }
 
     private fun displayCategories(categories: List<Dish>) {
+        binding.dishList.isVisible = true
+
         binding.dishList.layoutManager = LinearLayoutManager(this)
-        binding.dishList.adapter = CategoryListAdapter(categories)
+        binding.dishList.adapter =
+            CategoryListAdapter(
+                categories
+            ) {
+                val intent = Intent(this, DetailActivity::class.java)
+                intent.putExtra("dishTitle", it)
+                startActivity(intent)
+            }
     }
 
     private fun loadDataFromCategory(category: String) {
@@ -52,8 +61,10 @@ class DisplayMenuActivity : AppCompatActivity() {
             postData,
             {
                 val gson: DataResult = Gson().fromJson(it.toString(), DataResult::class.java)
-                val categories: List<Dish> = gson.data.firstOrNull { it.name == category }.dishes
-                displayCategories(categories)
+                val categories = gson.data.firstOrNull { it.name == category }?.dishes
+                if (categories != null) {
+                    displayCategories(categories)
+                }
             },
             { error -> error.printStackTrace() })
         requestQueue.add(jsonObjectRequest)
