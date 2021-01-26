@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.google.gson.Gson
 import fr.isen.nguyen.androiderestaurant.databinding.ActivityDisplayMenuBinding
 import org.json.JSONException
 import org.json.JSONObject
@@ -25,10 +26,18 @@ class DisplayMenuActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.category.text = intent.getStringExtra("category").toString()
 
-        linearLayoutManager = LinearLayoutManager(this)
-        binding.dishList.layoutManager = linearLayoutManager
-        binding.dishList.adapter = CategoryListAdapter(listOf(getString(R.string.pasta), getString(R.string.soup), getString(R.string.meat), getString(R.string.heresy)))
+        //Make that a function DisplayCategories
+        displayCategories(binding)
 
+        loadDataFromCategory(intent.getStringExtra("category").toString())
+    }
+
+    private fun displayCategories(categories: List<Dish>) {
+        binding.dishList.layoutManager = LinearLayoutManager(this)
+        binding.dishList.adapter = CategoryListAdapter(categories)
+    }
+
+    private fun loadDataFromCategory(category: String) {
         val postUrl = "http://test.api.catering.bluecodegames.com/menu"
         val requestQueue = Volley.newRequestQueue(this)
         val postData = JSONObject()
@@ -41,7 +50,11 @@ class DisplayMenuActivity : AppCompatActivity() {
             Request.Method.POST,
             postUrl,
             postData,
-            { response -> println(response) },
+            {
+                val gson: DataResult = Gson().fromJson(it.toString(), DataResult::class.java)
+                val categories: List<Dish> = gson.data.firstOrNull { it.name == category }.dishes
+                displayCategories(categories)
+            },
             { error -> error.printStackTrace() })
         requestQueue.add(jsonObjectRequest)
     }

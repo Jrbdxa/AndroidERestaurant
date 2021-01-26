@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import fr.isen.nguyen.androiderestaurant.databinding.CategoryCellBinding
 
-class CategoryListAdapter(val categories: List<String>): RecyclerView.Adapter<CategoryListAdapter.CategoryHolder>() {
+class CategoryListAdapter(val categories: List<Dish>): RecyclerView.Adapter<CategoryListAdapter.CategoryHolder>() {
     override fun onCreateViewHolder(
             parent: ViewGroup,
             viewType: Int
@@ -15,7 +15,7 @@ class CategoryListAdapter(val categories: List<String>): RecyclerView.Adapter<Ca
     }
 
     override fun onBindViewHolder(holder: CategoryHolder, position: Int) {
-        holder.title.text = categories[position]
+        holder.title.text = categories[position].title
     }
 
     override fun getItemCount(): Int = categories.size
