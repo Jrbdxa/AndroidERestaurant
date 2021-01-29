@@ -16,8 +16,6 @@ import org.json.JSONException
 import org.json.JSONObject
 
 private lateinit var binding: ActivityDisplayMenuBinding
-private lateinit var linearLayoutManager: LinearLayoutManager
-private lateinit var adapter: CategoryListAdapter
 
 class DisplayMenuActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
