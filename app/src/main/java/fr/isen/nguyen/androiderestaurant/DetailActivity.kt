@@ -45,6 +45,7 @@ class DetailActivity : AppCompatActivity() {
         binding.order.setOnClickListener{
             if(quantity > 0) {
                 saveBasket(dish, quantity)
+                quantity = 0
             }
         }
     }
@@ -55,7 +56,7 @@ class DetailActivity : AppCompatActivity() {
         val file = File(cacheDir.absolutePath + fileName)
 
         if (file.exists()) {
-            val basket: Basket = gson.fromJson(file.readText(), Basket::class.java)
+            var basket: Basket = gson.fromJson(file.readText(), Basket::class.java)
             basket.orders.firstOrNull{it.dishName == dish.title}?.let {
                 it.quantity += quantity
             }?: run {
