@@ -1,11 +1,11 @@
-package fr.isen.nguyen.androiderestaurant.model
+package fr.isen.nguyen.androiderestaurant
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import fr.isen.nguyen.androiderestaurant.R
 import fr.isen.nguyen.androiderestaurant.databinding.CategoryCellBinding
+import fr.isen.nguyen.androiderestaurant.model.Dish
 
 class CategoryListAdapter(val categories: List<Dish>, private val categoriesClickListener: (Dish) -> (Unit)): RecyclerView.Adapter<CategoryListAdapter.CategoryHolder>() {
     override fun onCreateViewHolder(
@@ -14,7 +14,7 @@ class CategoryListAdapter(val categories: List<Dish>, private val categoriesClic
     ): CategoryHolder {
         val itemBinding = CategoryCellBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CategoryHolder(
-            itemBinding
+                itemBinding
         )
     }
 

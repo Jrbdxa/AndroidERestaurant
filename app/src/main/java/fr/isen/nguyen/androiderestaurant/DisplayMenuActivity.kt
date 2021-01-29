@@ -10,7 +10,6 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import fr.isen.nguyen.androiderestaurant.databinding.ActivityDisplayMenuBinding
-import fr.isen.nguyen.androiderestaurant.model.CategoryListAdapter
 import fr.isen.nguyen.androiderestaurant.model.DataResult
 import fr.isen.nguyen.androiderestaurant.model.Dish
 import org.json.JSONException
