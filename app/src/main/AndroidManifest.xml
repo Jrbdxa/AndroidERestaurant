@@ -12,6 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidERestaurant"
         android:usesCleartextTraffic="true">
+        <activity android:name=".CartDetailActivity"></activity>
+        <activity
+            android:name=".BaseActivity"
+            android:label="@string/title_activity_base"
+            android:theme="@style/Theme.AndroidERestaurant.NoActionBar" />
         <activity android:name=".DetailActivity" />
         <activity android:name=".DisplayMenuActivity" />
         <activity android:name=".HomeActivity">

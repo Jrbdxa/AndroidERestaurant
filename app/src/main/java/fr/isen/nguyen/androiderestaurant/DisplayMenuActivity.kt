@@ -17,7 +17,7 @@ import org.json.JSONObject
 
 private lateinit var binding: ActivityDisplayMenuBinding
 
-class DisplayMenuActivity : AppCompatActivity() {
+class DisplayMenuActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

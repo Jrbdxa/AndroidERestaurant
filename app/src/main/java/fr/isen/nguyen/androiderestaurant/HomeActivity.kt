@@ -1,17 +1,19 @@
 package fr.isen.nguyen.androiderestaurant
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
+import android.R
 import android.content.Intent
-import android.util.Log
+import android.os.Bundle
+import android.view.Menu
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import fr.isen.nguyen.androiderestaurant.databinding.ActivityHomeBinding
+
 
 private lateinit var binding: ActivityHomeBinding
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
 
         val binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)

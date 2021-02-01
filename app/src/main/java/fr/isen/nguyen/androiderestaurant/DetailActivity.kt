@@ -1,7 +1,9 @@
 package fr.isen.nguyen.androiderestaurant
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import fr.isen.nguyen.androiderestaurant.databinding.ActivityDetailBinding
 import fr.isen.nguyen.androiderestaurant.model.Basket
@@ -11,7 +13,7 @@ import java.io.File
 
 private lateinit var binding: ActivityDetailBinding
 
-class DetailActivity : AppCompatActivity() {
+class DetailActivity : BaseActivity() {
 
     val fileName = "basket.json"
 
@@ -45,6 +47,9 @@ class DetailActivity : AppCompatActivity() {
         binding.order.setOnClickListener{
             if(quantity > 0) {
                 saveBasket(dish, quantity)
+                val snack = Snackbar.make(it, "Added " + quantity + " items to basket", Snackbar.LENGTH_LONG)
+                snack.show()
+                savePreferences(quantity)
                 quantity = 0
             }
         }
@@ -60,14 +65,22 @@ class DetailActivity : AppCompatActivity() {
             basket.orders.firstOrNull{it.dishName == dish.title}?.let {
                 it.quantity += quantity
             }?: run {
-                basket.orders.plus(order)
+                basket.orders += order
             }
+            basket.totalQuantity += quantity
             file.writeText(gson.toJson(basket))
         }
         else {
-            file.writeText(gson.toJson(Basket(listOf(order))))
+            file.writeText(gson.toJson(Basket(listOf(order), quantity)))
         }
+    }
 
+    private fun savePreferences(quantity: Int) {
+        val preference = getSharedPreferences(resources.getString(R.string.app_name), Context.MODE_PRIVATE)
+        val total = preference.getInt("quantity", 0)
+        val editor = preference.edit()
+        editor.putInt("quantity", total + quantity)
+        editor.commit()
     }
 
 }
