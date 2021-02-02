@@ -56,7 +56,7 @@ class DetailActivity : BaseActivity() {
     }
 
     fun saveBasket(dish: Dish, quantity: Int) {
-        val order = Order(dish.title, quantity)
+        val order = Order(dish.title, quantity, dish.prices[0].value.toInt())
         val gson = Gson()
         val file = File(cacheDir.absolutePath + fileName)
 
@@ -65,13 +65,13 @@ class DetailActivity : BaseActivity() {
             basket.orders.firstOrNull{it.dishName == dish.title}?.let {
                 it.quantity += quantity
             }?: run {
-                basket.orders += order
+                basket.orders.add(order)
             }
             basket.totalQuantity += quantity
             file.writeText(gson.toJson(basket))
         }
         else {
-            file.writeText(gson.toJson(Basket(listOf(order), quantity)))
+            file.writeText(gson.toJson(Basket(mutableListOf(order), quantity)))
         }
     }
 

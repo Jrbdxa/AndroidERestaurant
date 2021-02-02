@@ -22,7 +22,7 @@ class CategoryListAdapter(val categories: List<Dish>, private val categoriesClic
         val currentDish = categories[position]
         holder.title.text = currentDish.title
         holder.price.text = currentDish.prices[0].value
-        holder.description.text = currentDish.ingredients.map{ e -> e.title }.joinToString(", " )
+        holder.description.text = currentDish.ingredients.joinToString(", ") { e -> e.title }
 
         val thumbnailUrl = currentDish.getThumbnail()
         if (thumbnailUrl != null) {
