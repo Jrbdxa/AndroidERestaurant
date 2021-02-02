@@ -18,6 +18,8 @@
     <string name="password">Mot de passe</string>
     <string name="register">Créer un compte</string>
     <string name="switch_login">Déjà un compte ? Cliquez ici.</string>
+    <string name="login">S\'identifier</string>
+    <string name="switch_register">Pas de compte ? Cliquez ici.</string>
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>

@@ -1,5 +1,7 @@
 package fr.isen.nguyen.androiderestaurant
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.android.volley.Request
@@ -51,6 +53,10 @@ class RegisterActivity : AppCompatActivity() {
             {
                 val result = Gson().fromJson(it.toString(), JsonRegisterResponse::class.java)
                 println(result.data.id)
+                val sharedPreferences = getSharedPreferences(resources.getString(R.string.app_name), Context.MODE_PRIVATE)
+                sharedPreferences.edit().putString("id", result.data.id).apply()
+                val intent = Intent(this, OrderActivity::class.java)
+                startActivity(intent)
             },
             { error -> error.printStackTrace() })
         requestQueue.add(jsonObjectRequest)
