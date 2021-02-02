@@ -22,6 +22,11 @@ class CartDetailActivity : BaseActivity() {
         setContentView(binding.root)
 
         loadDataFromBasket()
+
+        binding.orderButton.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun loadDataFromBasket() {
