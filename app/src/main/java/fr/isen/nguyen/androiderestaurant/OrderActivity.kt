@@ -9,16 +9,20 @@ import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
+import fr.isen.nguyen.androiderestaurant.databinding.ActivityOrderBinding
 import fr.isen.nguyen.androiderestaurant.model.Basket
 import fr.isen.nguyen.androiderestaurant.model.JsonRegisterResponse
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.File
 
+private lateinit var binding: ActivityOrderBinding
+
 class OrderActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_order)
+        binding = ActivityOrderBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         order()
     }
@@ -46,8 +50,12 @@ class OrderActivity : AppCompatActivity() {
                 postData,
                 {
                     println(it)
+                    binding.orderStatus.text = "Commande envoyée avec succès !"
                 },
-                { error -> error.printStackTrace() })
+                { error ->
+                    error.printStackTrace()
+                    binding.orderStatus.text = "Echec de la requête. Réessayez plus tard."
+                })
         requestQueue.add(jsonObjectRequest)
     }
 

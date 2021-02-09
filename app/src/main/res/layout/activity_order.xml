@@ -6,4 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".OrderActivity">
 
+    <TextView
+        android:id="@+id/orderStatus"
+        android:layout_width="268dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="268dp"
+        android:text="@string/order_status"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
