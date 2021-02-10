@@ -32,6 +32,11 @@ class LoginActivity : AppCompatActivity() {
         binding.loginButton.setOnClickListener{
             loginUser()
         }
+
+        binding.switchToRegister.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun loginUser() {

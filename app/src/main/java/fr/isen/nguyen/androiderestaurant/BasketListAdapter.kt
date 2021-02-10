@@ -1,5 +1,6 @@
 package fr.isen.nguyen.androiderestaurant
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -16,11 +17,12 @@ class BasketListAdapter(val orderList: MutableList<Order>, private val deleteIte
         return BasketHolder(binding)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: BasketHolder, position: Int) {
         val order: Order = orderList[position]
         holder.title.text = order.dishName
-        holder.price.text = order.dishPrice.toString()
-        holder.quantity.text = order.quantity.toString()
+        holder.price.text = "Prix : " + order.dishPrice.toString() + "€"
+        holder.quantity.text = "Quantité : " + order.quantity.toString()
 
         holder.delete.setOnClickListener{
             deleteItem(position)

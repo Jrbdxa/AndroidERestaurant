@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="?attr/actionButtonStyle"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="76dp"
+    android:layout_height="54dp"
     android:clipToPadding="false"
     android:focusable="true">
 
     <ImageView
         android:id="@+id/cart_icon"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_gravity="right"
         android:src="@drawable/shopping_cart_icon" />
 
@@ -19,14 +18,14 @@
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_gravity="right|end|top"
+        android:layout_marginTop="3dp"
         android:layout_marginEnd="-5dp"
         android:layout_marginRight="-5dp"
-        android:layout_marginTop="3dp"
         android:background="@drawable/badge_background"
         android:gravity="center"
         android:padding="3dp"
-        android:textColor="@android:color/white"
         android:text="0"
-        android:textSize="10sp"/>
+        android:textColor="@android:color/white"
+        android:textSize="10sp" />
 
 </FrameLayout>

@@ -1,5 +1,6 @@
 package fr.isen.nguyen.androiderestaurant
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -18,11 +19,12 @@ class CategoryListAdapter(val categories: List<Dish>, private val categoriesClic
         )
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: CategoryHolder, position: Int) {
         val currentDish = categories[position]
         holder.title.text = currentDish.title
-        holder.price.text = currentDish.prices[0].value
-        holder.description.text = currentDish.ingredients.joinToString(", ") { e -> e.title }
+        holder.price.text = "Prix : " + currentDish.prices[0].value + "€"
+        holder.description.text = "Ingrédients : " + currentDish.ingredients.joinToString(", ") { e -> e.title }
 
         val thumbnailUrl = currentDish.getThumbnail()
         if (thumbnailUrl != null) {

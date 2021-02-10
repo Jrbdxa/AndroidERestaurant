@@ -33,6 +33,11 @@ class RegisterActivity : AppCompatActivity() {
             if(id == "")
                 registerUser()
         }
+
+        binding.switchToLogin.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun registerUser() {

@@ -26,7 +26,7 @@ class DetailActivity : BaseActivity() {
 
         val dish = intent.getSerializableExtra("dishTitle") as Dish
         binding.detailName.text = dish.title
-        binding.detailDescription.text = dish.ingredients.map{ e -> e.title }.joinToString(", " )
+        binding.detailDescription.text = "Ingrédients : " + dish.ingredients.map{ e -> e.title }.joinToString(", " )
         if(dish.getAllPictures() != null) {
             binding.imageSlider.adapter = ImageSliderAdapter(this, dish.getAllPictures()!!)
         }
